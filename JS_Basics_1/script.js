@@ -1,11 +1,110 @@
 console.log('hello namaste duniya');
 
-let a = true;
-console.log(a);
+// let a = true;
+// console.log(a);
 
-//const num = 12;
-let lastName = 'babbar';
-console.log(lastName);
+// //const num = 12;
+// let lastName = 'babbar';
+// console.log(lastName);
 
 
+// # object  create
+// const rectangle = {
+//     length: 1,
+//     breath: 2,
 
+//     draw: function () {
+//         console.log('drawing function');
+//     }
+// }
+
+
+//# factory function  -> Camel case -> first letter is small and other will be capital --> firstName
+
+// function createRectangle(length, breath) {
+//     const rectangle = {
+//         length,
+//         breath,
+
+//         draw: function () {
+//             console.log('drawing function');
+//         }
+//     };
+
+//     return rectangle;
+// }
+
+// let rectangleObject1 = createRectangle(4, 5);
+// let rectangle2 = createRectangle(2, 1);
+// let rectabgle3 = createRectangle(3, 8);
+
+// # constructor function -> pascal notation -> first letter of every word is capital -> NumberOfState
+// this used show curret object
+
+// objecct creation using constructor funtion
+// new is a keyword which return empty objects
+// function Rectangle(len, bre) {
+//     this.length = len;
+//     this.breath = bre;
+//     this.draw = function () {
+//         console.log('drawing');
+//     }
+// }
+// let rectangleObject = new Rectangle(8, 9);
+
+// # dynamic object 
+
+function Rectangle(len, bre) {
+    this.length = len;
+    this.breath = bre;
+    this.draw = function () {
+        console.log('drawing');
+    }
+}
+let rectangleObject = new Rectangle(8, 9);
+rectangleObject.color = 'white';
+console.log(rectangleObject);
+
+delete rectangleObject.color;
+
+// constructor property
+// function are objects
+
+// data type
+// primitive type pass by value
+// answer will be 10 not 11
+
+let b = 10;
+function inc(b) {
+    b++;
+}
+inc(b);
+console.log(b);
+
+// refrenses pass by refrence
+
+let a = { value: 10 };
+function inc(a) {
+    a.value++;
+}
+inc(a);
+console.log(a)
+
+// for -in  loop
+// keys are reflected through key varibles
+// values are reflected through rectangle[key]
+
+let rectangle = {
+    length: 2,
+    breath: 4,
+};
+
+// for (let key in rectangle) {
+//     console.log(key, rectangle[key]);
+// }
+
+// for -of loop
+
+for (let key of Object.keys(rectangle)) {
+    console.log(key);
+}
