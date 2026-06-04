@@ -108,3 +108,59 @@ let rectangle = {
 for (let key of Object.keys(rectangle)) {
     console.log(key);
 }
+
+if ('length' in rectangle) {
+    console.log('present');
+}
+else {
+    console.log('absent');
+}
+
+// object cloning by iteration
+
+let src = {
+    a: 20,
+    b: 30,
+    c: 40,
+
+};
+
+let dest = {};
+
+for (let key in src) {
+    dest[key] = src[key];
+
+}
+
+console.log(dest);
+
+src.a++;
+console.log(dest);
+
+// object #2 by assing
+
+// let src = {
+//     a: 20,
+//     b: 30,
+//     c: 40,
+// };
+
+// let dest = Object.assign({}, src);
+// console.log(dest);
+
+// src.a++;
+// console.log(dest);
+
+// #3 object cloning
+
+// let src = {
+//     a: 20,
+//     b: 30,
+//     c: 40,
+// };
+
+// let dest = { ...src };
+// console.log(dest)
+
+// src.a++;
+// console.log(dest);
