@@ -190,6 +190,8 @@ console.log(date3);
 
 let numbers = [1, 3, 6, 7];
 
+numbers.length = 0;
+
 console.log(numbers);
 
 // insertion end begin middle
@@ -216,3 +218,79 @@ console.log(course);
 // let course = courses.find(course => course.name === 'love');
 
 console.log(course);
+
+// combine  primitive
+
+let first = [1, 2, 3];
+let second = [4, 5, 6];
+
+// let combined = first.concat(second);
+// console.log(combined);
+
+// slice on primitive 
+
+// let sliced = combined.slice(2, 6);
+
+// console.log(sliced);
+
+// (2,6) range of 2 to 6 in indexning 2 included and last element will be excluded
+
+// spread operator 
+
+let combined = [...first, 'a', ...second];
+console.log(combined);
+
+// copy 
+
+let another = [...combined];
+
+// join
+
+let num = [12, 13, 14, 15, 16];
+const joined = num.join(',');
+
+console.log(joined);
+
+// split 
+
+let message = 'this is my first message';
+
+let parts = message.split(' ');
+
+console.log(parts);
+
+// sort primitive
+
+let letter = [42, 56, 34, 12, 44];
+letter.sort();
+console.log(letter);
+
+// filtering in array
+
+let array = [2, 4, -4, 0, -9];
+
+let filtered = array.filter(value => value >= 0);
+console.log(filtered)
+
+// mapping arrays
+
+let list = [3, 6, 2, 4, 1];
+
+let mapping = list.map(function (value) {
+    return 'student_no' + value;
+})
+
+console.log(mapping);
+
+// mapping whith objects
+
+let numerical = [1, -2, 3, 4, -6, 5];
+
+let filterd = numerical.filter(value => value >= 0);
+let items = filterd.map(function (num) {
+    let obj = { value: num };
+    return obj;
+})
+
+console.log(items);
+
