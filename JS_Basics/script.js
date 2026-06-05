@@ -164,3 +164,55 @@ console.log(dest);
 
 // src.a++;
 // console.log(dest);
+
+// string in objects
+let lastName = 'malviya';
+
+let firstName = new String('niharika');
+
+// template literal used back tick
+
+let name = `
+hello niharika
+
+thank you for coming
+
+regards
+niharika`;
+console.log(name);
+
+let date = new Date()
+
+let date3 = new Date(2005, 1, 3, 11)
+console.log(date3);
+
+// array creation  as primitive
+
+let numbers = [1, 3, 6, 7];
+
+console.log(numbers);
+
+// insertion end begin middle
+
+// array as objects index of methods not works here because its based on refrences 
+
+let courses = [
+    { no: 1, name: 'niharika' },
+    { no: 2, name: 'rahul' }
+];
+
+console.log(courses);
+
+// searcing inside object array
+
+let course = courses.find(function (course) {
+    return course.name === 'love';
+})
+
+console.log(course);
+
+// other way to write the function method using arrow function
+
+// let course = courses.find(course => course.name === 'love');
+
+console.log(course);
