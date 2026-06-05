@@ -294,3 +294,37 @@ let items = filterd.map(function (num) {
 
 console.log(items);
 
+// function declearation
+function run() {
+    console.log('running')
+}
+
+run();
+
+// function assingments 
+
+let stand = function swim() {
+    console.log('swimimg')
+}
+
+stand();
+
+// arguments 
+
+function sum() {
+    let total = 0;
+    for (let value of arguments)
+        total = total + value;
+    return total;
+}
+
+let ans = sum(1, 2, 3, 4);
+console.log(ans);
+
+// rest operator  ... 
+
+function add(num, value, ...args) {
+    console.log(args);
+}
+add(1, 2, 3, 4)
+
