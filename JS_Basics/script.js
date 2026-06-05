@@ -328,3 +328,56 @@ function add(num, value, ...args) {
 }
 add(1, 2, 3, 4)
 
+// default parameter
+function interest(p, r = 9, y = 10) {
+    return p * r * y / 100;
+}
+console.log(interest(1000, 8, 9));
+
+// getter & setter
+
+let person = {
+    fName: 'gungun',
+    lName: 'malviya',
+    get fullName() {
+        return `${person.fName} ${person.lName}`;
+    },
+
+    set fullName(value) {
+        if (typeof value !== 'string') {
+            throw new Error("you have not sent a string");
+        }
+        let parts = value.split(' ');
+        this.fName = parts[0]
+        this.lName = parts[1];
+    }
+};
+// person.fullName = 'rahul kumar'
+// console.log(person.fullName);
+
+
+// try & catch
+
+try {
+    person.fullName = true;
+}
+
+catch (e) {
+    alert(e);
+}
+
+console.log(person.fullName);
+
+let arr = [1, 2, 3];
+let total = 0;
+
+for (let value of arr)
+    total = total + value;
+
+console.log(total);
+
+let totalSum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(total.sum);
+
+
+
