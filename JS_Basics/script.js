@@ -377,7 +377,7 @@ for (let value of arr)
 console.log(total);
 
 let totalSum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-console.log(total.sum);
+console.log(totalSum);
 
 
 
