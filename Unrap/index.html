@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increment & Decrement</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+
+<body>
+    <section class="w-[100vw] h-[50vw] flex flex-col items-center justify-center gap-18 bg-gray-700">
+        <div class="">
+            <h3 class="text-white font-bold text-[20px]">Increment And Decrement</h3>
+            <div class="bg-white flex text-[25px] rounded-sm  gap-12 p-3 px-5 mt-8">
+                <button onclick="decrement()" class="justify-center border-r-2 border-slate-300 w-10 h-10 pr-5">
+                    <img src="./images/minus-sign.png" alt="">
+                </button>
+
+                <div id="counter" class="font-bold">
+                    0
+                </div>
+
+                <button onclick="increment()" class="border-l-2 border-slate-300 w-10 h-10 pl-5">
+                    <img src="./images/plus.png" alt=""> </button>
+
+            </div>
+        </div>
+    </section>
+    <!-- <script src="https://kit.fontawesome.com/58a81065e.js" crossorigin="anonymous"></script> -->
+    <script src="script.js"></script>
+</body>
+
+
+
+</html>
