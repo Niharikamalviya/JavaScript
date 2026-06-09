@@ -14,16 +14,16 @@ const allCheckBox = document.querySelectorAll("input[type=checkbox]");
 const symbols = '~`!@#$%^&*()_+=-{}|[]\:;"<,.>?/'
 
 let password = "";
-let passwardLength = 10;
-let checkCount = 1;
+let passwordLength = 10;
+let checkCount = 0;
 handleSlider();
 // strength circle color to gray 
 
 
 // set passwarLength
 function handleSlider() {
-    inputSlider.value = passwardLength;
-    lengthDisplay.innerText = passwardLength;
+    inputSlider.value = passwordLength;
+    lengthDisplay.innerText = passwordLength;
 
 }
 
@@ -102,7 +102,123 @@ async function copyContent() {
 
 }
 
+function shufflePassword(Array) {
+    // fisher yates method
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = math.floor(math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    let str = "";
+    array.forEach((el) => (atr += el));
+    return str;
+}
+// function for suffle 
+
+function handleCheckBoxChange() {
+    checkCount = 0;
+    allCheckBox.forEach((checkbox) => {
+        if (checkbox.checked)
+            checkCount++;
+    });
+
+    // special condition mini 4 length ka password hona chaiye 
+    if (passwordLength < checkCount) {
+        passwordLength = checkCount;
+        handleSlider();
+    }
+}
+
+allCheckBox.forEach((checkbox) => {
+    checkbox.addEventListener('change', handleCheckBoxChange);
+}
+)
+
 inputSlider.addEventListener('input', (e) => {
     passwordLength = e.target.value;
-    handleSlidder();
+    handleSlider();
 })
+
+copyBtn.addEventListener('click', () => {
+    if (passwordDisplay.value)
+        copyContent();
+
+
+})
+
+generateBtn.addEventListener('click', () => {
+    // none of the checkbox are selected
+    if (checkCount <= 0)
+        return;
+
+    if (passwordLength < checkCount) {
+        passwordLength = checkCount;
+        handleSlider();
+    }
+
+    // let's start the jouney to find new password
+
+    // remove old password
+    password = "";
+
+    // let's put the stuff mentioned by checkbox
+    // if (upperCaseCheck.checked) {
+    //     password += generateUpperCase();
+    // }
+
+    // if (lowerCaseCheck.checked) {
+    //     password += generateLowerCase();
+    // }
+
+    // if (numbersCheck.checked) {
+    //     password += generateRandomNumber();
+
+    // }
+
+    // if (symbolsCheck.checked) {
+    //     password += generateSymbols();
+
+    // }
+
+    let funcArr = [];
+    if (upperCaseCheck.checked)
+        funcArr.push(generateUpperCase);
+
+    if (lowerCaseCheck.checked)
+        funcArr.push(generateLowerCase);
+
+
+    if (numbersCheck.checked)
+        funcArr.push(generateRandomNumber);
+
+    if (symbolsCheck.checked)
+        funcArr.push(generateSymbols);
+
+    // compulsory addition
+
+    for (let i = 0; i < funcArr.length; i++) {
+        password += funcArr[i]();
+
+    }
+
+    // remaining addition
+
+    for (let i = 0; i < passwordLength - funcArr.Length; i++) {
+        let randIndex = getRandomInteger(0, funcArr.Length);
+        password += funcArr[randIndex]();
+    }
+
+    // suffle the password 
+    password = shufflePassword(Array.from(password));
+
+    passwordDisplay.value = password;
+
+    // calculate strength
+
+    calcStrength();
+
+
+
+});
