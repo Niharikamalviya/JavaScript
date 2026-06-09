@@ -13,9 +13,9 @@ const allCheckBox = document.querySelectorAll("input[type=checkbox]");
 const symbols = '~`!@#$%^&*()_+=-{}|[]\:;"<,.>?/'
 
 let password = "";
-let passwordLength = 10;
+let passwordLength = 10; //new temp varible for storing length slider and length value 
 let checkCount = 0;
-handleSlider();
+handleSlider();  //UI ko update krna basis on password length value
 // strength circle color to gray 
 
 
@@ -104,11 +104,15 @@ async function copyContent() {
 function shufflePassword(array) {
     // fisher yates method
     for (let i = array.length - 1; i > 0; i--) {
+        // random j, finnd out using random function
         const j = Math.floor(Math.random() * (i + 1));
         const temp = array[i];
+        // swap number at i inndex and j index
         array[i] = array[j];
         array[j] = temp;
     }
+
+    // string banai hai toh combine the swapped value as new string
 
     let str = "";
     array.forEach((el) => (str += el));
@@ -131,7 +135,7 @@ function handleCheckBoxChange() {
 }
 
 allCheckBox.forEach((checkbox) => {
-    checkbox.addEventListener('change', handleCheckBoxChange);
+    checkbox.addEventListener('change', handleCheckBoxChange);  //event listener lagya hai ki jitni baar slider aage piche karoge utne baar password ki length change ho jayegi
 }
 )
 
@@ -140,7 +144,7 @@ inputSlider.addEventListener('input', (e) => {
     handleSlider();
 })
 
-copyBtn.addEventListener('click', () => {
+copyBtn.addEventListener('click', () => {  //password generate ho gya hai toh copy wale content ko call kr do
     if (passwordDisplay.value)
         copyContent();
 
@@ -149,7 +153,7 @@ copyBtn.addEventListener('click', () => {
 
 generateBtn.addEventListener('click', () => {
     // none of the checkbox are selected
-    if (checkCount == 0)
+    if (checkCount == 0)   // 1st condition koi bhi password agr checked nhi h  toh koi bhi password generate nhi hogi 
         return;
 
     if (passwordLength < checkCount) {
@@ -160,7 +164,7 @@ generateBtn.addEventListener('click', () => {
     // let's start the jouney to find new password
 
     // remove old password
-    password = "";
+    password = "";  //remove the purana paasword
 
     // let's put the stuff mentioned by checkbox
     // if (upperCaseCheck.checked) {
