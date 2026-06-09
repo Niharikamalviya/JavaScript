@@ -3,12 +3,11 @@ const passwordDisplay = document.querySelector("[data-passwordDisplay]");
 const lengthDisplay = document.querySelector("[data-length]");
 const copyBtn = document.querySelector("[data-Copy]");
 const copiedData = document.querySelector("[data-copied]");
-const dataSlider = document.querySelector("[data-slider]");
 const upperCaseCheck = document.querySelector("#uppercase");
 const lowerCaseCheck = document.querySelector("#Lowercase");
 const numbersCheck = document.querySelector("#Numbers");
 const symbolsCheck = document.querySelector("#Symbols");
-const indicatorCircle = document.querySelector("[data-indicator]");
+const indicator = document.querySelector("[data-indicator]");
 const generateBtn = document.querySelector(".generatePassword");
 const allCheckBox = document.querySelectorAll("input[type=checkbox]");
 const symbols = '~`!@#$%^&*()_+=-{}|[]\:;"<,.>?/'
@@ -20,7 +19,7 @@ handleSlider();
 // strength circle color to gray 
 
 
-// set passwarLength
+// set passwardLength
 function handleSlider() {
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
@@ -34,7 +33,7 @@ function setIndicator(color) {
 
 
 function getRandomInteger(min, max) {
-    return math.floor(math.random() * (max - min)) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
     // floor for around of krne ke liye hota h to avoid decimal value only return interger value 
 }
 
@@ -51,8 +50,8 @@ function generateUpperCase() {
 }
 
 function generateSymbols() {
-    const randomNum = getRandomNum(0, symbols.length);
-    return symbols.chartAt(randomNum);  //symbolChartAt used to generate rendom symbols from the hard coded strings 
+    const randomNum = getRandomInteger(0, symbols.length);
+    return symbols.charAt(randomNum);  //symbolChartAt used to generate rendom symbols from the hard coded strings 
 }
 
 // conditions for colors strengths 
@@ -61,11 +60,11 @@ function calcStrength() {
     let hasUpper = false;
     let hasLower = false;
     let hasNum = false;
-    let hasSum = false;
+    let hasSym = false;
     if (upperCaseCheck.checked) hasUpper = true;
     if (lowerCaseCheck.checked) hasLower = true;
     if (numbersCheck.checked) hasNum = true;
-    if (symbolsCheck.checkked) hasSym = true;
+    if (symbolsCheck.checked) hasSym = true;
 
     if (hasUpper && hasLower && (hasNum || hasSym) && passwordLength >= 8) {
         setIndicator("#0f0");
@@ -86,7 +85,7 @@ function calcStrength() {
 async function copyContent() {
     // write text used to copied text work as a promise funnction it can be resolved or rejecte
     try {
-        await navigator.clipboard.write(passworDisplay.value);
+        await navigator.clipboard.writeText(passwordDisplay.value);
         copiedData.innerText = "copied";
     }
     catch (e) {
@@ -102,17 +101,17 @@ async function copyContent() {
 
 }
 
-function shufflePassword(Array) {
+function shufflePassword(array) {
     // fisher yates method
     for (let i = array.length - 1; i > 0; i--) {
-        const j = math.floor(math.random() * (i + 1));
+        const j = Math.floor(Math.random() * (i + 1));
         const temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
 
     let str = "";
-    array.forEach((el) => (atr += el));
+    array.forEach((el) => (str += el));
     return str;
 }
 // function for suffle 
@@ -150,7 +149,7 @@ copyBtn.addEventListener('click', () => {
 
 generateBtn.addEventListener('click', () => {
     // none of the checkbox are selected
-    if (checkCount <= 0)
+    if (checkCount == 0)
         return;
 
     if (passwordLength < checkCount) {
@@ -205,8 +204,8 @@ generateBtn.addEventListener('click', () => {
 
     // remaining addition
 
-    for (let i = 0; i < passwordLength - funcArr.Length; i++) {
-        let randIndex = getRandomInteger(0, funcArr.Length);
+    for (let i = 0; i < passwordLength - funcArr.length; i++) {
+        let randIndex = getRandomInteger(0, funcArr.length);
         password += funcArr[randIndex]();
     }
 
@@ -218,7 +217,5 @@ generateBtn.addEventListener('click', () => {
     // calculate strength
 
     calcStrength();
-
-
 
 });
