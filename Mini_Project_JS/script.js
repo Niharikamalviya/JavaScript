@@ -18,17 +18,24 @@ let checkCount = 0;
 handleSlider();  //UI ko update krna basis on password length value
 // strength circle color to gray 
 
+// set indicator to gray
+setIndicator("#ccc");
+
 
 // set passwardLength
 function handleSlider() {
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
+    const min = inputSlider.min;
+    const max = inputSlider.max;
+    inputSlider.style.backgroundSize = ((passwordLength - min) * 100 / (max - min)) + "% 100%"
 
 }
 
 // set indicator color using css in js
 function setIndicator(color) {
-    indicator.style.background = color;
+    indicator.style.backgroundColor = color;
+    indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 
 
