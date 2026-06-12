@@ -79,6 +79,7 @@ async function fetchUserWeatherInfo(coordinates) {
         console.log(data);
 
         loadingScreen.classList.remove("active");
+        errorContainer.classList.remove("active");
         userInfoContainer.classList.add("active");
         // call to function to show real data 
         renderWeatherInfo(data);
@@ -157,6 +158,7 @@ searchForm.addEventListener("submit", (e) => {
     let cityName = searchInput.value;
 
     if (cityName === "")
+
         return;
 
     else
@@ -165,6 +167,7 @@ searchForm.addEventListener("submit", (e) => {
 
 async function fetchSearchWeatherInfo(City) {
     loadingScreen.classList.add("active");
+    errorContainer.classList.remove("active");
     userInfoContainer.classList.remove("active");
     grantAccessContainer.classList.remove("active");
 
