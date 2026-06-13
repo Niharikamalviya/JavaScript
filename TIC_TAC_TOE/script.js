@@ -1,5 +1,5 @@
 const boxes = document.querySelectorAll(".box");
-const gameInfo = document.querySelector(".gameInfo");
+const gameInfo = document.querySelector(".game-info");
 const newGameBtn = document.querySelector(".Btn");
 
 // to start the game first be needed
@@ -31,6 +31,7 @@ function initGame() {
     boxes.forEach((box, index) => {
         box.innerText = "";
         boxes[index].style.pointerEvents = "all";
+        box.classList = `box box${index + 1}`;
     });
     newGameBtn.classList.remove("active");
     gameInfo.innerText = `Current Player - ${currentPlayer}`;
@@ -47,22 +48,30 @@ function swapTurn() {
     }
     // ui update
 
-    gameInfo.innerText = `Current Plyer - ${currentPlayer}`;
+    gameInfo.innerText = `Current Player - ${currentPlayer}`;
 }
 
 function checkGameOver() {
     let answer = "";
 
+
+
     winningPositions.forEach((position) => {
         // all 3 boxes should be non empty and same in value 
         if ((gameGrid[position[0]] !== "" || gameGrid[position[1]] !== "" || gameGrid[position[2]] !== "")
-            && (gameGrid[position[0]] === gameGrid[position[1]] === gameGrid[position[2]])) {
+            && (gameGrid[position[0]] === gameGrid[position[1]]) && (gameGrid[position[1]] === gameGrid[position[2]])) {
 
             // check if winner is x 
             if (gameGrid[position[0]] === "X")
                 answer = "X";
             else
                 answer = "O";
+
+            boxes.forEach((box) => {
+                box.style.pointerEvents = "none";
+            })
+
+
 
             // now we know X/0 is a winer 
 
@@ -78,6 +87,18 @@ function checkGameOver() {
         gameInfo.innerText = `winner Player - ${answer}`;
         newGameBtn.classList.add("active");
 
+        return;
+    }
+    // when the
+    let fillCount = 0;
+    gameGrid.forEach((box) => {
+        if (box !== "")
+            fillCount++;
+    });
+
+    if (fillCount === 9) {
+        gameInfo.innerText = "Game Tied !";
+        newGameBtn.classList.add("active");
     }
 
 }
@@ -103,6 +124,6 @@ boxes.forEach((box, index) => {
     box.addEventListener("click", () => {
         handleClick(index);
     })
-})
+});
 
-newGameBtn.addEventListener("click", initGame)
+newGameBtn.addEventListener("click", initGame);
